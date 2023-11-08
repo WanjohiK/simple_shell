@@ -11,7 +11,7 @@
  */
 void displayPrompt(void)
 {
-        write(STDOUT_FILENO, "simple_shell$ ", 13);
+	write(STDOUT_FILENO, "simple_shell$ ", 13);
 }
 
 /**
@@ -20,32 +20,31 @@ void displayPrompt(void)
  */
 void handleCommandExecution(const char *command)
 {
-        pid_t pid = fork();
+	pid_t pid = fork();
 
+	if (pid == -1)
+	{
+		perror("Fork failed");
+		exit(1);
+	}
+	else if (pid == 0)
+	{
+		if (execlp(command, command, NULL) == -1)
+		{
+			perror("Command execution failed");
+			exit(1);
+		}
+	}
+	else
+	{
+		int status;
 
-        if (pid == -1)
-        {
-                perror("Fork failed");
-                exit(1);
-        }
-        else if (pid == 0)
-        {
-                if (execlp(command, command, NULL) == -1)
-                {
-                        perror("Command execution failed");
-                        exit(1);
-                }
-        }
-        else
-        {
-                int status;
-
-                waitpid(pid, &status, 0);
-                if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-                {
-                        write(STDOUT_FILENO, "Command execution failed\n", 25);
-                }
-        }
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		{
+			write(STDOUT_FILENO, "Command execution failed\n", 25);
+		}
+	}
 }
 
 /**
@@ -54,21 +53,21 @@ void handleCommandExecution(const char *command)
  */
 int main(void)
 {
-        char command[MAX_COMMAND_LENGTH];
+	char command[MAX_COMMAND_LENGTH];
 
-        while (1)
-        {
-                displayPrompt();
-                if (!fgets(command, sizeof(command), stdin))
-                {
-                        write(STDOUT_FILENO, "\n", 1);
-                        break;
-                }
+	while (1)
+	{
+		displayPrompt();
+		if (!fgets(command, sizeof(command), stdin))
+		{
+			write(STDOUT_FILENO, "\n", 1);
+			break;
+		}
 
-                command[strlen(command) - 1] = '\0';
-                handleCommandExecution(command);
-        }
+		command[strlen(command) - 1] = '\0';
+		handleCommandExecution(command);
+	}
 
-        return (0);
+	return (0);
 }
 
