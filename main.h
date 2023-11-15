@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
-* execs - handles commands
-* @input: array ofstandard input
-* @n: name of 
-* @j: index of error
-* @head: linked containing environment
+* execu - executes command
+* @input: array arg
+* @s: program file
+* @i: error index
+* @head: contains env
 *
 * Description: making child process
 *
-* Return: return with 1 on success,  0 failure
+* Return: return to main loop with 1 on success, or 0 on failure
 */
-int execs(char **input, char *n, int *j, env_t **head)
+int execu(char **input, char *s, int *i, env_t **head)
 {
 	struct stat filestat;
 	int status = 0;
@@ -21,21 +21,21 @@ int execs(char **input, char *n, int *j, env_t **head)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		print_errors(j, n, input);
+		print_error(i, s, input);
 		free_everything(input);
 		exit(EXIT_SUCCESS);
 	}
 	if (child_pid == 0)
 	{
 		env = list_to_arr(*head);
-		if (get_env_vals("PATH=", env)[0] != '/')
+		if (get_env_val("PATH=", env)[0] != '/')
 			execve(input[0], input, env);
-		exe = path_finders(input, env);
+		exe = path_finder(input, env);
 		if (!exe && !stat(input[0], &filestat))
 		{
 			if (execve(input[0], input, env) == -1)
 			{
-				print_errors(j, n, input);
+				print_error(i, s, input);
 				free_everything(input), free_everything(env);
 				return (0);
 			}
@@ -44,7 +44,7 @@ int execs(char **input, char *n, int *j, env_t **head)
 		}
 		if (execve(exe, input, env) == -1)
 		{
-			print_errors(j, n, input);
+			print_error(i, s, input);
 			free(exe), free_everything(input), free_everything(env);
 			exit(EXIT_SUCCESS);
 		}
@@ -56,12 +56,11 @@ int execs(char **input, char *n, int *j, env_t **head)
 }
 
 /**
- * main - simple command-line argument 
- * prints a prompt and waits
- * @ac: number of ar
- * @av: array of arg
+ * main - simple command-prints line
+ * @ac: number of arguments
+ * @av: array of arguments
  *
- * Description: If an argument 
+ * Description: print error if argument is passed
  *
  * Return: always 0, for success
  */
@@ -96,12 +95,12 @@ int main(int ac, char *av[])
 		input = parse_line(line, get);
 		if (!input)
 			continue;
-		if (is_builtins(line, input, prog_name, &cmd_count, &head))
+		if (is_builtin(line, input, prog_name, &cmd_count, &head))
 		{
 			free_everything(input);
 			continue;
 		}
-		if (!execs(input, prog_name, &cmd_count, &head))
+		if (!execu(input, prog_name, &cmd_count, &head))
 			break;
 	}
 	free_list(&head), free(line);
