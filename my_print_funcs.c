@@ -13,9 +13,9 @@ int _putchar(char c)
 
 
 /**
- * print_prompt - helps print prompt
+ * print_prompts - helps print prompt
  */
-void print_prompt(void)
+void print_prompts(void)
 {
 	char *s = "$ ";
 

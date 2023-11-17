@@ -36,7 +36,7 @@ int wordcounts(char *str, char delim)
 *
 * Return: pointer to the array
 */
-char **_strtoks(char *str, char delim)
+char **_strtok(char *str, char delim)
 {
 	char *cpy = NULL, **words = NULL;
 	int j = 0, n = 0, len = 0, total = 0;

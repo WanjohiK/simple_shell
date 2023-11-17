@@ -29,7 +29,7 @@ typedef struct list_s
 } env_t;
 
 /* main.c */
-int exec(char **input, char *s, int *i, env_t **head);
+int exec(char **input, char *s, int *j, env_t **head);
 
 /* path_finder.c */
 char **get_envs(char *name, char **env);
@@ -38,7 +38,7 @@ char *get_env_vals(char *name, char **env);
 
 /* tokenize.c */
 int wordcounts(char *str, char delim);
-char **_strtoks(char *str, char delim);
+char **_strtok(char *str, char delim);
 
 /* print_funcs.c */
 void print_prompts(void);
@@ -46,11 +46,11 @@ int _putchar(char c);
 void _puts(char *str);
 
 /* print_errors.c */
-void print_errors(int *i, char *s, char **argv);
+void print_errors(int *j, char *s, char **argv);
 void print_error_envs(char **argv);
-void print_error_exits(int *i, char *s, char **argv);
+void print_error_exits(int *j, char *s, char **argv);
 void print_error_mains(char **av);
-void print_error_cds(int *i, char *s, char **argv);
+void print_error_cds(int *j, char *s, char **argv);
 
 /* string_funcs_1.c */
 int _strcmp(char *s1, char *s2);
@@ -64,19 +64,19 @@ int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 
 /* helper_funcs.c */
-void free_everythings(char **args);
+void free_everything(char **args);
 void sigint_handlers(int sig);
 char **parse_lines(char *line, int get);
 
 /* builtins.c */
-int is_builtin(char *line, char **argv, char *prog_name, int *i, env_t **head);
-long int exit_handler(char **tokens);
-int env_handler(char **av, env_t **head);
-int cd_handler(char **argv, env_t **head);
-void change_pwd(char *path, char **env, env_t **head);
+int is_builtins(char *line, char **argv, char *prog_name, int *j, env_t **head);
+long int exit_handlers(char **tokens);
+int env_handlers(char **av, env_t **head);
+int cd_handlers(char **argv, env_t **head);
+void change_pwds(char *path, char **env, env_t **head);
 
 /* convert.c */
-char *converts(int num, int base);
+char *convert(int num, int base);
 long int _atoi(char *s);
 
 /* list_funcs_1.c */
@@ -95,7 +95,7 @@ char **list_to_arrs(env_t *head);
 /* set_env.c */
 int _unsetenv(env_t **head, char **argv);
 int _setenv(env_t **head, char **argv, int args);
-void setenv_handler(char **argv, env_t **head, int *i, char *prog_name);
-void print_error_setenv(int *i, char *s, char **argv);
+void setenv_handlers(char **argv, env_t **head, int *j, char *prog_name);
+void print_error_setenvs(int *j, char *s, char **argv);
 
 #endif

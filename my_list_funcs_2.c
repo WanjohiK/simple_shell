@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * arr_to_lists - transforms the 
+ * arr_to_lists - transforms the
  * @head: double pointer to the env_t list to fill
  * @env: array of strings conta
  *
@@ -14,19 +14,19 @@ int arr_to_lists(env_t **head, char **env)
 	int j = 0;
 
 	if (head)
-		free_list(head);
+		free_lists(head);
 
 	while (env[j])
 	{
-		add_node_end(head, env[j]);
+		add_node_ends(head, env[j]);
 		j++;
 	}
 	return (j);
 }
 
 /**
- * list_to_arrs - transforms a 
- * @head: pointer env_t 
+ * list_to_arrs - transforms a
+ * @head: pointer env_t
  *
  * Description: If the list doesn't e
  *
@@ -48,7 +48,7 @@ char **list_to_arrs(env_t *head)
 	if (!arr)
 		return (NULL);
 
-	for (j = 0; temp; temp = temp->next, i++)
+	for (j = 0; temp; temp = temp->next, j++)
 	{
 		s = malloc(sizeof(char) * (_strlen(temp->str) + 1));
 		if (!s)

@@ -57,7 +57,7 @@ long int _atoi(char *s)
  *
  * Return: result string
  */
-char *converts(int num, int base)
+char *convert(int num, int base)
 {
 	static char *rep = "0123456789";
 	static char buffer[50];

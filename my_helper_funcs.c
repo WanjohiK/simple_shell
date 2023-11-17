@@ -15,10 +15,10 @@ void sigint_handlers(int sig)
 }
 
 /**
- * free_everythings - arrays of strings
+ * free_everything - arrays of strings
  * @args: array of strings to free
  */
-void free_everythings(char **args)
+void free_everything(char **args)
 {
 	int j;
 
@@ -44,7 +44,7 @@ char **parse_lines(char *line, int get)
 
 	if (line[get - 1] == '\n')
 		line[get - 1] = '\0';
-	input = _strtoks(line, ' ');
+	input = _strtok(line, ' ');
 
 	return (input);
 }

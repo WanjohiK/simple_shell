@@ -1,0 +1,58 @@
+
+Certainly! Below is a paraphrased version of the provided documentation for the Simple Shell program:
+
+Simple Shell Manual
+NAME
+Simple Shell - a command line interpreter
+
+SYNOPSIS
+css
+Copy code
+$ [command] -[options] [arguments]
+DESCRIPTION
+Simple Shell, developed as a first-year project at Holberton School, mirrors the behavior of the Unix shell program, 'sh.' It interprets commands from standard input, using forked child processes and the execve() system call for command execution.
+
+Run
+Compile with:
+
+Copy code
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+Execute with:
+
+bash
+Copy code
+./hsh
+Overview
+Interprets commands, forks into a child process, executes the command using execve(), and returns control to the parent process.
+
+Invocation
+Two modes: interactive and non-interactive. Interactive mode prompts for user input, while non-interactive mode directly executes a command without a prompt.
+
+Path Search
+Searches for shell functions, builtins, or executables in the PATH variable. If PATH is altered, it checks the current working directory.
+
+Builtins
+Implements shell builtins: exit, env, setenv, unsetenv, cd.
+
+EXAMPLES
+$ ls -l: Lists files in the current directory.
+echo "pwd" | ./hsh: Displays the current working directory path.
+$ baguette: Throws an error if "baguette" is not found.
+$ exit 98: Exits the shell with a status of 98.
+SEE ALSO
+dash
+csh
+NOTES
+Simple Shell, coded in C, may lack some features of a real shell. Accepts one command at a time.
+
+BUGS
+Certain regular shell builtins are not implemented, leading to unexpected behavior.
+
+AUTHORS
+kelvin Wanjohi and Dan Chirchir, Cohort 198.
+
+
+
+
+
+

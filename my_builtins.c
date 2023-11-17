@@ -26,7 +26,7 @@ int is_builtins(char *line, char **argv, char *prog_name, int *j, env_t **head)
 		{
 			free_everything(argv);
 			free(line);
-			free_list(head);
+			free_lists(head);
 			exit(p);
 		}
 		return (1);
@@ -40,7 +40,7 @@ int is_builtins(char *line, char **argv, char *prog_name, int *j, env_t **head)
 	}
 	if (!_strcmp(argv[0], "setenv") || !_strcmp(argv[0], "unsetenv"))
 	{
-		setenv_handler(argv, head, j, prog_name);
+		setenv_handlers(argv, head, j, prog_name);
 		return (1);
 	}
 	if (!_strcmp(argv[0], "cd"))
@@ -48,7 +48,7 @@ int is_builtins(char *line, char **argv, char *prog_name, int *j, env_t **head)
 		r = cd_handlers(argv, head);
 		if (r == -1)
 		{
-			print_error_cd(j, prog_name, argv);
+			print_error_cds(j, prog_name, argv);
 			write(2, "\n", 1);
 		}
 		return (1);
@@ -102,7 +102,7 @@ int env_handlers(char **av, env_t **head)
 {
 	if (av[1] == NULL)
 	{
-		print_list(*head);
+		print_lists(*head);
 		return (0);
 	}
 	return (-1);
@@ -121,7 +121,7 @@ int cd_handlers(char **argv, env_t **head)
 {
 	char *home = NULL, *old = NULL, **env = NULL;
 
-	env = list_to_arr(*head);
+	env = list_to_arrs(*head);
 	if (!argv[1])
 	{
 		home = get_env_vals("HOME=", env);
@@ -176,7 +176,7 @@ void change_pwds(char *path, char **env, env_t **head)
 	current[1] = _strdup("PWD");
 	current[2] = _strdup(path);
 	current[3] = NULL;
-	nodes = arr_to_list(head, env);
+	nodes = arr_to_lists(head, env);
 	if (!nodes)
 		return;
 	set = _setenv(head, old, 2);

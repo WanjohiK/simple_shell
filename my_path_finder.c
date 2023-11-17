@@ -35,10 +35,10 @@ char **get_envs(char *name, char **env)
 
 	for (j = 0; env[j]; j++)
 	{
-		path = _strtoks(env[j], '=');
+		path = _strtok(env[j], '=');
 		if (_strcmp(name, path[0]) == 0)
 		{
-			value = _strtoks(path[1], ':');
+			value = _strtok(path[1], ':');
 			free_everything(path);
 			return (value);
 		}
