@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _setenvs - sets an environment
+ * _setenv - sets an environment
  * @head: double pointer
  * @argv: name and val
  * @args: number of ar
@@ -46,7 +46,7 @@ int _setenv(env_t **head, char **argv, int args)
 }
 
 /**
- * _unsetenvs - unsets an environment
+ * _unsetenv - unsets an environment
  * @head: double pointer
  * @argv: array of strings
  *

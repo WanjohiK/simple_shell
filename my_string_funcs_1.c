@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
-* _strdups - allocate memory for a str
+* _strdup - allocate memory for a str
 * @str: string to duplicate
 *
 * Return: new string on success, NULL on failure
@@ -78,7 +78,7 @@ char *str_concat(char *s1, char *s2)
 }
 
 /**
- * _strcmps - compares two strings
+ * _strcmp - compares two strings
  * @s1: first string
  * @s2: second string
  *
@@ -100,7 +100,7 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
-* _strncmps - compare strings
+* _strncmp - compare strings
 * @s1: string 1
 * @s2: string 1
 * @n: number of bytes to compare

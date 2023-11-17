@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strlens - length of a string
+ * _strlen - length of a string
  * @s: string to evaluate
  *
  * Return: length of string
@@ -18,7 +18,7 @@ int _strlen(char *s)
 }
 
 /**
- * *_strcpys - string pointer
+ * *_strcpy - string pointer
  * @dest: pointer to the buffer in which we copy the string
  * @src: string to be copied
  *

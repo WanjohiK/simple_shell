@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * add_node_end - adds a new node at the end of a linked list
+ * add_node_ends - adds a new node at the end of a linked list
  * @head: double pointer to the env_t list
  * @str: string to put in the new node
  *
@@ -35,7 +35,7 @@ env_t *add_node_ends(env_t **head, char *str)
 }
 
 /**
- * delete_node_at_index - deletes a node in a linked list at a certain index
+ * delete_node_at_indexs - deletes a node in a linked list at a certain index
  * @head: pointer to the first element in the list
  * @index: index of the node to delete
  *
@@ -83,7 +83,7 @@ int delete_node_at_indexs(env_t **head, unsigned int index)
  * @idx: index where to insert the node
  *
  * Description: Allocate memory for a new node
- * 
+ *
  * Return: 0 on success, -1 on failure
  */
 int add_node_at_indexs(env_t **head, char *str, int idx)
@@ -124,7 +124,7 @@ int add_node_at_indexs(env_t **head, char *str, int idx)
 /**
  * find_index_lists - finds the index
  * @head: pointer to the env_t list
- * @name: string of the node to find
+ * @name: strinode to find
  *
  * Description: Traverse the list,
  *
