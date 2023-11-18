@@ -2,9 +2,9 @@
 
 /**
  * _putchar - writees charcater c
- * @c: This is the chracter to be printed
+ * @c: This is the chracter  printed
  *
- * Return: if successful return 1 and -1 if error
+ * Return: if successful
  */
 int _putchar(char c)
 {
@@ -28,9 +28,9 @@ void print_prompts(void)
  */
 void _puts(char *str)
 {
-	int i;
+	int j;
 
-	for (i = 0; str[i] != '\0'; i++)
-		_putchar(str[i]);
+	for (j = 0; str[j] != '\0'; j++)
+		_putchar(str[j]);
 	_putchar('\n');
 }

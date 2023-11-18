@@ -123,7 +123,7 @@ void print_error_setenvs(int *j, char *s, char **argv)
 	free(buf2);
 	buf4 = str_concat(buf3, argv[0]);
 	free(buf3);
-	buf5 = str_concat(buf4, ": Bad variable name\n");
+	buf5 = str_concat(buf4, ": Bad ble ame\n");
 	free(buf4);
 	write(2, buf5, _strlen(buf5));
 	free(buf5);
